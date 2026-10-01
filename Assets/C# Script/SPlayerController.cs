@@ -33,6 +33,6 @@ public class SPlayerController : MonoBehaviour
 
     private void Drop(InputAction.CallbackContext context)
     {
-        
+        spawner.DropPumpkin();
     }
 }
