@@ -20,8 +20,8 @@ public enum PumpkinState
 public class SPumpkin : MonoBehaviour
 {
     public PumpkinState state { get; private set; }
-    [SerializeField] private int currentstage = 0;
-    private bool bIsMerging = false;
+    [SerializeField] private int currentstage = 1;
+    [SerializeField] private bool bIsMerging = false;
     private Vector3 Spritescale = new Vector3(0.1f, 0.1f, 0.1f);
 
     private void Awake()
@@ -48,6 +48,7 @@ public class SPumpkin : MonoBehaviour
         if (other.CompareTag("Pumpkin"))
         {
             SPumpkin otherPumpkin = other.GetComponent<SPumpkin>();
+            if (otherPumpkin.bIsMerging) return;
             if (otherPumpkin.state == state)
             {
                 int nextStage = (int)state + 1;
@@ -57,13 +58,13 @@ public class SPumpkin : MonoBehaviour
                     Destroy(gameObject);
                     return;
                 }
-                if (otherPumpkin.bIsMerging) return;
                 bIsMerging = true;
                 otherPumpkin.bIsMerging = true;
 
                 UpdatePumpkinState(nextStage);
 
                 Destroy(other.gameObject);
+                bIsMerging = false;
             }
         }
     }
