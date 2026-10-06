@@ -8,8 +8,12 @@ public class SGameInstance : MonoBehaviour
     public int SpawnSizeIndex { get; private  set; }
     //sprite array
     [SerializeField] private Sprite[] pumpkinSprites;
-    
-    
+
+    public Sprite GetPumpkinSprite(int index)
+    {
+        return pumpkinSprites[index];
+    }
+
     private void Awake()
     {
         if (Instance != null && Instance != this)

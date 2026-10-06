@@ -36,6 +36,9 @@ public class SSpawner : MonoBehaviour
     public void SpawnPumpkin()
     {
         SpawnedPumpkin = Instantiate(PumpkinPrefab, transform.position, Quaternion.identity);
+        int index = Random.Range(0, 3);
+        SpawnedPumpkin.GetComponent<SpriteRenderer>().sprite = SGameInstance.Instance.GetPumpkinSprite(index);
+        SpawnedPumpkin.GetComponent<SPumpkin>().UpdatePumpkinState(index + 1);
         Rigidbody2D rb = SpawnedPumpkin.GetComponent<Rigidbody2D>();
         rb.gravityScale = 0;
     }
