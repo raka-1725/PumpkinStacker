@@ -16,6 +16,7 @@ public class SPlayerController : MonoBehaviour
         inputAction.Player.Horizontal.performed += PerformMovement;
         inputAction.Player.Horizontal.canceled += PerformMovement;
         inputAction.Player.Drop.performed += Drop;
+        inputAction.Player.Quit.performed += QuitGame;
     }
     private void OnEnable() => inputAction.Player.Enable();
     private void OnDisable() => inputAction.Player.Disable();
@@ -34,5 +35,12 @@ public class SPlayerController : MonoBehaviour
     private void Drop(InputAction.CallbackContext context)
     {
         spawner.DropPumpkin();
+    }
+
+    private void QuitGame(InputAction.CallbackContext context)
+    {
+        Debug.Log("Quit Game");
+        Debug.Log("Quit Game");
+        Application.Quit();
     }
 }

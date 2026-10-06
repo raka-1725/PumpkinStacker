@@ -208,7 +208,6 @@ GameObject:
   m_Component:
   - component: {fileID: 241127077}
   - component: {fileID: 241127078}
-  - component: {fileID: 241127079}
   m_Layer: 0
   m_Name: PlayerController
   m_TagString: Untagged
@@ -244,18 +243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SPlayerController
   spawner: {fileID: 925008861}
---- !u!114 &241127079
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 241127076}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1425a6fc7086d2f4db1c0b158a42416d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SQuit
 --- !u!1001 &250104232
 PrefabInstance:
   m_ObjectHideFlags: 0
