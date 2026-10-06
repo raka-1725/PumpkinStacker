@@ -23,9 +23,26 @@ public class SPumpkin : MonoBehaviour
     [SerializeField] private int currentstage = 1;
     [SerializeField] private bool bIsMerging = false;
     private Vector3 Spritescale = new Vector3(0.1f, 0.1f, 0.1f);
+    
 
-    private void Awake()
+    private void Update()
     {
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(
+            transform.position,
+            0.5f
+        );
+
+        foreach (Collider2D other in colliders)
+        {
+            if (other.gameObject == gameObject)
+                continue;
+
+            if (other.CompareTag("Pumpkin"))
+            {
+                CheckMerge(other);
+                return;
+            }
+        }
     }
 
     public void UpdatePumpkinState(int stage)
@@ -42,6 +59,11 @@ public class SPumpkin : MonoBehaviour
     
 
     private void OnTriggerEnter2D(Collider2D other)
+    {
+        CheckMerge(other);
+    }
+
+    private void CheckMerge(Collider2D other)
     {
         if (bIsMerging) return;
 
