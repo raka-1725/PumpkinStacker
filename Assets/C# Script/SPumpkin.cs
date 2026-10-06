@@ -26,24 +26,25 @@ public class SPumpkin : MonoBehaviour
 
     private void Awake()
     {
-        UpdatePumpkinState(1);
     }
 
     public void UpdatePumpkinState(int stage)
     {
         if (stage < 1 || stage > 12) return;
+
         currentstage = stage;
         state = (PumpkinState)stage;
-        float scaleindex = stage * 0.1f;
-        transform.localScale = new Vector3(scaleindex, scaleindex, scaleindex);
-        GetComponent<SpriteRenderer>().sprite = SGameInstance.Instance.GetPumpkinSprite(stage - 1);
+        float scaleIndex = stage * 0.1f;
+        transform.localScale = new Vector3(scaleIndex, scaleIndex, scaleIndex);
+        GetComponent<SpriteRenderer>().sprite =
+            SGameInstance.Instance.GetPumpkinSprite(stage - 1);
     }
     
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(other.name);
         if (bIsMerging) return;
+
         if (other.CompareTag("Pumpkin"))
         {
             SPumpkin otherPumpkin = other.GetComponent<SPumpkin>();
@@ -55,15 +56,14 @@ public class SPumpkin : MonoBehaviour
                     Destroy(other.gameObject);
                     Destroy(gameObject);
                     return;
-                };
+                }
                 if (otherPumpkin.bIsMerging) return;
                 bIsMerging = true;
                 otherPumpkin.bIsMerging = true;
+
                 UpdatePumpkinState(nextStage);
-                Debug.Log("pumpkin upgraded");
 
                 Destroy(other.gameObject);
-                bIsMerging = false;
             }
         }
     }
