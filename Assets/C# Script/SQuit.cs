@@ -6,8 +6,9 @@ public class SQuit : MonoBehaviour
 {
     private void Update()
     {
-        if (Keyboard.current != null && Keyboard.current.escapeKey.wasPressedThisFrame)
+        if (Gamepad.current.startButton.wasPressedThisFrame || Keyboard.current.escapeKey.wasPressedThisFrame)
         {
+            Debug.Log("Quit");
             Application.Quit();
         }
     }
